@@ -1,2 +1,0 @@
-from .biggan import *
-

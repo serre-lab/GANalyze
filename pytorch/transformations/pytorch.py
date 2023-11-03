@@ -9,8 +9,8 @@ class OneDirection(nn.Module):
     def __init__(self,dim_z,vocab_size=1000, **kwargs):
         super(OneDirection, self).__init__()
         print("\napproach: ", "one_direction\n")
-        self.dim_z = dim_z
-        self.vocab_size = vocab_size
+        self.dim_z = 140
+        self.vocab_size = 1000
         self.w = nn.Parameter(torch.randn(1, self.dim_z))
         self.criterion = nn.MSELoss()
 
