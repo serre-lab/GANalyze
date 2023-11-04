@@ -1,6 +1,7 @@
 import torchvision
 import torch
 import math
+from torch.nn.functional import interpolate
 
 class EmoNet(torch.nn.Module):
 
@@ -60,7 +61,7 @@ def image_transform(model):
         model = model.module
     normalize = torchvision.transforms.Normalize(mean=model.mean, std=model.std)
     return torchvision.transforms.Compose([
-        torchvision.transforms.Lambda(lambda image: F.interpolate(image, size=(224, 224), mode="bilinear")),
+        torchvision.transforms.Lambda(lambda image: interpolate(image, size=(224, 224), mode="bilinear")),
         torchvision.transforms.Lambda(lambda image: torch.stack([normalize(x / 255) for x in image])),
     ])
 

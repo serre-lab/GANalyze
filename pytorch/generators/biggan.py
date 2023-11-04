@@ -498,6 +498,13 @@ def biggan512():
     return G
 
 
+def biggan128():
+    s = os.path.join(os.path.dirname(os.path.realpath(__file__)),"biggan-128.pth")
+    G = Generator128()
+    G.load_state_dict(torch.load(s))
+    return G
+
+
 def biggan(size):
     return ({128: Generator128, 256: Generator256, 512: Generator512}.get(size, Generator256),
             {128: Discriminator128, 256: Discriminator256, 512: Discriminator512}.get(size, Discriminator256))

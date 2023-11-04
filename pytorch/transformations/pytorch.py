@@ -9,7 +9,7 @@ class OneDirection(nn.Module):
     def __init__(self,dim_z,vocab_size=1000, **kwargs):
         super(OneDirection, self).__init__()
         print("\napproach: ", "one_direction\n")
-        self.dim_z = 140
+        self.dim_z = 120
         self.vocab_size = 1000
         self.w = nn.Parameter(torch.randn(1, self.dim_z))
         self.criterion = nn.MSELoss()
@@ -28,9 +28,9 @@ class OneDirection(nn.Module):
 
     def compute_loss(self, current, target, batch_start, lossfile):
         loss = self.criterion(current,target)
-        with open(lossfile, 'a') as file:
-            file.writelines(str(batch_start)+",mse_loss,"+str(loss)+"\n")
-            file.writelines(str(batch_start) + ",overall_loss," + str(loss)+"\n")
+        # with open(lossfile, 'a') as file:
+        #     file.writelines(str(batch_start)+",mse_loss,"+str(loss)+"\n")
+        #     file.writelines(str(batch_start) + ",overall_loss," + str(loss)+"\n")
         return loss
 
 class ClassDependent(nn.Module):
