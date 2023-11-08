@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+
 echo "Downloading EmoNet weights"
-wget -P assessors http://ganalyze.csail.mit.edu/models/EmoNet_valence_moments_resnet50_5_best.pth.tar
+gdown --output assessors 15LSbjI9TRiMp5jq2fRNj7DSSTkH-6Heu
 
 echo "Downloading BigGAN weights"
-wget -P generators http://ganalyze.csail.mit.edu/models/biggan-128.pth
-wget -P generators http://ganalyze.csail.mit.edu/models/biggan-256.pth
+gdown --output generators 15Q0FfQNmpg-3Ubf43YQL5gBxr7ILT3VO
 
+mkdir 'checkpoints'
+gdown --output checkpoints 1jknRrJSQ2SGlHqvSTFnLHKQsC4UhYFGr
