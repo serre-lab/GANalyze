@@ -40,7 +40,9 @@ def annotate_outscore(array, outscore):
         font =  PIL.ImageFont.truetype("./utils/arial.ttf", int(array.shape[1]/8.5))
         message = str(round(np.squeeze(outscore)[i], 2))
         x, y = (0, 0)
-        w, h = font.getsize(message)
+        # w, h = font.getsize(message)
+        bbox = font.getbbox(message)
+        w, h = bbox[2] - bbox[0], bbox[3] - bbox[1]
         #print(w, h)
         draw.rectangle((x, y, x + w, y + h), fill='white')
         draw.text((x, y), message, fill="black", font=font)
@@ -71,3 +73,4 @@ class AverageMeter(object):
     def __str__(self):
         fmtstr = '{name} {val' + self.fmt + '} ({avg' + self.fmt + '})'
         return fmtstr.format(**self.__dict__)
+
