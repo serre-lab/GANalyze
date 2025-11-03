@@ -27,7 +27,7 @@ class EmoNet(torch.nn.Module):
 
 def emonet(tencrop):
     model = EmoNet()
-    parameters = torch.load("./assessors/EmoNet_valence_moments_resnet50_5_best.pth.tar", map_location='cpu')
+    parameters = torch.load("./assessors/EmoNet_valence_moments_resnet50_5_best.pth.tar", map_location='cpu',weights_only=False)
     state_dict = {'.'.join(k.split('.')[1:]): v for k, v in list(parameters['state_dict'].items())}
     state_dict["model.fc.weight"] = state_dict.pop("model.last_linear.weight")
     state_dict["model.fc.bias"] = state_dict.pop("model.last_linear.bias")
@@ -86,3 +86,4 @@ def tencrop(images, cropped_size=227):
                                            center:center + cropped_size, :].permute(2, 0, 1)
         crops[img_index, 9, :, :, :] = torch.flip(crops[img_index, curr, :, :, :], [2])
     return crops
+
